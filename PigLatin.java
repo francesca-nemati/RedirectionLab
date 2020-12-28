@@ -11,6 +11,15 @@ public class PigLatin {
     System.out.println(pigLatin("skee"));
     System.out.println(pigLatin("emu"));
     System.out.println(pigLatin("grade"));
+
+    System.out.println(pigLatinBest("*emu"));
+    System.out.println(pigLatinBest("4chan"));
+    System.out.println(pigLatinBest("fish!"));
+    System.out.println(pigLatinBest("fish"));
+    System.out.println(pigLatinBest("the."));
+    System.out.println(pigLatinBest("cat!"));
+    System.out.println(pigLatinBest("amazing?"));
+    System.out.println(pigLatinBest("apple%"));
   }
 
   public static String PigLatinSimple(String s){
@@ -43,6 +52,27 @@ public class PigLatin {
       return s;
     }
     else return PigLatinSimple(s);
+  }
+
+  public static String pigLatinBest (String s) {
+    int ascii1 = (int) s.charAt(0);
+    int asciiLast = (int) s.charAt(s.length()-1);
+    if (ascii1 < 65 || ascii1 > 122) {
+      return s;
+    }
+    else if (ascii1 < 97 && ascii1 > 90) {
+      return s;
+    }
+    else if ((asciiLast >= 65 && asciiLast <= 90) || (asciiLast >= 97 && asciiLast <= 122) || (asciiLast >= 48 && asciiLast <= 57)) {
+      return pigLatin(s);
+    }
+    else {
+      String punctuation = s.substring(s.length()-1,s.length());
+      s = s.substring(0,s.length()-1);
+      s = pigLatin(s);
+      s = s + punctuation;
+      return s;
+    }
   }
 
 }
