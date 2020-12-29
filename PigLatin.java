@@ -1,25 +1,16 @@
 import java.util.*;
 public class PigLatin {
   public static void main(String[] args) {
-    System.out.println(PigLatinSimple("mock"));
-    System.out.println(PigLatinSimple("pie"));
-    System.out.println(PigLatinSimple("david"));
-    System.out.println(PigLatinSimple("aaron"));
-
-    System.out.println(pigLatin("the"));
-    System.out.println(pigLatin("check"));
-    System.out.println(pigLatin("skee"));
-    System.out.println(pigLatin("emu"));
-    System.out.println(pigLatin("grade"));
-
-    System.out.println(pigLatinBest("*emu"));
-    System.out.println(pigLatinBest("4chan"));
-    System.out.println(pigLatinBest("fish!"));
-    System.out.println(pigLatinBest("fish"));
-    System.out.println(pigLatinBest("the."));
-    System.out.println(pigLatinBest("cat!"));
-    System.out.println(pigLatinBest("amazing?"));
-    System.out.println(pigLatinBest("apple%"));
+    Scanner n = new Scanner( System.in );
+    while (n.hasNextLine()) {
+      Scanner w = new Scanner(n.nextLine());
+      while (w.hasNext()) {
+        String c = w.next();
+        System.out.print(pigLatinBest(c));
+        if (w.hasNext()) System.out.print(" ");
+      }
+      if (n.hasNextLine()) System.out.println();
+    }
   }
 
   public static String PigLatinSimple(String s){
@@ -37,19 +28,23 @@ public class PigLatin {
 
   public static String pigLatin(String s) {
     s = s.toLowerCase();
-    if (s.substring(0,2).equals("bl") || s.substring(0,2).equals("br") || s.substring(0,2).equals("ch") ||
-    s.substring(0,2).equals("ck") || s.substring(0,2).equals("cl") || s.substring(0,2).equals("cr") ||
-    s.substring(0,2).equals("dr") || s.substring(0,2).equals("fl") || s.substring(0,2).equals("fr") ||
-    s.substring(0,2).equals("gh") || s.substring(0,2).equals("gl") || s.substring(0,2).equals("gr") ||
-    s.substring(0,2).equals("ng") || s.substring(0,2).equals("ph") || s.substring(0,2).equals("pl") ||
-    s.substring(0,2).equals("pr") || s.substring(0,2).equals("qu") || s.substring(0,2).equals("sc") ||
-    s.substring(0,2).equals("sh") || s.substring(0,2).equals("sk") || s.substring(0,2).equals("sl") ||
-    s.substring(0,2).equals("sm") || s.substring(0,2).equals("sn") || s.substring(0,2).equals("sp") ||
-    s.substring(0,2).equals("st") || s.substring(0,2).equals("sw") || s.substring(0,2).equals("th") ||
-    s.substring(0,2).equals("tw") || s.substring(0,2).equals("wh") || s.substring(0,2).equals("wr")) {
-      String f = s.substring(0,2);
-      s = s.substring(2) + f + "ay";
-      return s;
+    if (s.length() > 1) {
+      if (s.substring(0,2).equals("bl") || s.substring(0,2).equals("br") || s.substring(0,2).equals("ch") ||
+      s.substring(0,2).equals("ck") || s.substring(0,2).equals("cl") || s.substring(0,2).equals("cr") ||
+      s.substring(0,2).equals("dr") || s.substring(0,2).equals("fl") || s.substring(0,2).equals("fr") ||
+      s.substring(0,2).equals("gh") || s.substring(0,2).equals("gl") || s.substring(0,2).equals("gr") ||
+      s.substring(0,2).equals("ng") || s.substring(0,2).equals("ph") || s.substring(0,2).equals("pl") ||
+      s.substring(0,2).equals("pr") || s.substring(0,2).equals("qu") || s.substring(0,2).equals("sc") ||
+      s.substring(0,2).equals("sh") || s.substring(0,2).equals("sk") || s.substring(0,2).equals("sl") ||
+      s.substring(0,2).equals("sm") || s.substring(0,2).equals("sn") || s.substring(0,2).equals("sp") ||
+      s.substring(0,2).equals("st") || s.substring(0,2).equals("sw") || s.substring(0,2).equals("th") ||
+      s.substring(0,2).equals("tr") || s.substring(0,2).equals("tw") || s.substring(0,2).equals("wh") ||
+      s.substring(0,2).equals("wr")) {
+        String f = s.substring(0,2);
+        s = s.substring(2) + f + "ay";
+        return s;
+      }
+      else return PigLatinSimple(s);
     }
     else return PigLatinSimple(s);
   }
